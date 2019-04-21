@@ -31,7 +31,14 @@ def collatz(number) :
 
 def testCollatz() :
     print('Enter a integer:')
-    num = int(input())
+    i = 0
+    while i < 1 :
+        try :
+            num = int(input())
+            i = i + 1
+        except ValueError :
+            print('Please input a inter.')
+        
     num = collatz(num)
     tryCount = 1
     while num != 1 :
