@@ -46,7 +46,12 @@ def strongPwd() :
     tips = 'Enter a string pwd,lenth is at least 8, contain upper and lower letter, at least one number and special character.(Enter exit to quit):'
     reg = re.compile(r'^(?:(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*(?:\W|_))).{8,16}$')
 
-    runRegex(reg,tips) 
+    runRegex(reg,tips)
+
+def strip2(txt,stripStr) :
+    if stripStr == None :
+        reg = re.compile(r'^\s*.*\s*$',re.DOTALL)    
+    
 
 
 def testRegex() :
