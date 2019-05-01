@@ -14,11 +14,18 @@ def mcb() :
     mcbFile = shelve.open('mcb')
 
     # save clipboard content
-    if len(sys.argv) == 3 and sys.argv[1].lower() == 'save' :
-        mcbFile[sys.argv[2]] = pyperclip.paste()
+    if len(sys.argv) == 3 :
+        if sys.argv[1].lower() == 'save' :
+            mcbFile[sys.argv[2]] = pyperclip.paste()
+        elif sys.argv[1].lower() == 'delete' :
+            if sys.argv[2] in mcbFile :
+                del mcbFile[sys.argv[2]]
+        
     elif len(sys.argv) == 2 :
         if sys.argv[1].lower() == 'list' :
             pyperclip.copy(str(list(mcbFile.keys() )))
+        elif sys.argv[1].lower() == 'delete' :
+            del mcbFile
         elif sys.argv[1] in mcbFile :
             pyperclip.copy(mcbFile[sys.argv[1]] )
             
