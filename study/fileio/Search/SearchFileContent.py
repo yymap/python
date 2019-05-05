@@ -56,7 +56,24 @@ def searchFileContent(fileName,searchKey):
 def testSearchDir():
     searchDir('..', 'EEE')
     
-testSearchDir()
+# testSearchDir()
+
+def walkFolder():
     
+    while True:
+        print('Enter the folder to walk:')
+        folderPath = input()
+        if not os.path.isabs(folderPath):
+            print('Enter absolute path.')
+            continue
+        break
     
+    for currentFolder, subFolders,fileNames in os.walk(folderPath):
+        print('Current=' + currentFolder)
+        for fdName in subFolders:
+            print("Folder=" + fdName)
+        
+        for fName in fileNames:
+            print('File='+fName)
     
+walkFolder() 
