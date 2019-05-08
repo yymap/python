@@ -4,6 +4,7 @@ Use search engine easily
 '''
 
 import webbrowser,requests,bs4,logging
+from selenium import webdriver
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -19,4 +20,18 @@ def baiduSearch(keyWord,topCount):
         logging.debug(tags[i].get('href'))
         webbrowser.open(tags[i].get('href'))
     
-baiduSearch('python', 5)
+# baiduSearch('python', 5)
+
+
+'''
+You need to download chromedriver.exe from google .
+Then copy it into chrome installation directory, like C:\Program Files (x86)\Google\Chrome\Application
+Then add this path into system envrionment variable: path.
+'''
+def operChrome():
+    chromeBrowser = webdriver.Chrome()
+    baseUrl = 'https://www.cnblogs.com/pick/'
+    chromeBrowser.get(baseUrl)
+    
+
+operChrome()
