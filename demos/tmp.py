@@ -1,6 +1,11 @@
 #! python3
 import os,shutil,sys,pprint,pyperclip,webbrowser,requests,bs4,csv,json,time,datetime,subprocess,threading \
-    ,smtplib,tkinter,shelve
+    ,smtplib,tkinter,shelve,smtplib,mime,email
+from mime import mime_types
+from typing import Text
+
+    
+
 
 ''' demo1
 try:
@@ -34,6 +39,7 @@ except Exception as err:
     sys.exit(1)
 '''
 
+''' demo: shelve
 shFile = shelve.open('zy')
 
 
@@ -46,7 +52,36 @@ else:
     print(shFile['tom'])
 
 shFile.close()
+'''
 
+''' demo: send mail
+from email.mime.text import MIMEText
+from email.header import Header
+
+smtpServer = 'smtp.163.com'
+smtpPort = 25
+loginPwd = 'AAA'
+sender = 'imap2000@163.com'
+receiver = ['403681907@qq.com','zhaoyang2018@163.com']
+smCharset = 'utf-8'
+
+msg = MIMEText('this is python mail content....','plain',smCharset)
+msg['Subject'] = Header('Python books subject2',smCharset)
+
+msg['From'] = 'Eric<imap2000@163.com>' #Header('EricFrom',smCharset)  # use this will cause DT:SPM 163 error
+msg['To'] = 'Tom<403681907@qq.com>' #Header('TomReceiver0',smCharset)
+
+try:
+    smObj = smtplib.SMTP()
+    smObj.connect(smtpServer,smtpPort)
+    smObj.login(sender,loginPwd)
+    smObj.sendmail(sender,receiver,msg.as_string())
+    print('Mail send success.')
+    smObj.quit()
+except smtplib.SMTPException as ex:
+    print(ex)
+
+'''
 
 
 
